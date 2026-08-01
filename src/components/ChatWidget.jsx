@@ -21,10 +21,17 @@ export default function ChatWidget({ scanId }) {
     setInput("");
     setSending(true);
     try {
+      console.log("Before API call");
       const res = await api.sendChatMessage(text, scanId);
+      console.log("After API call", res);
       setMessages((m) => [...m, { role: "assistant", text: res.reply }]);
     } catch (e) {
-      setMessages((m) => [...m, { role: "assistant", text: "Sorry, I couldn't respond just now. Please try again." }]);
+        console.error("CHAT ERROR:", e);
+        setMessages((m) => [
+        ...m,
+        { role: "assistant", text: "Sorry, I couldn't respond just now. Please try again." }
+      ]);
+    }
     } finally {
       setSending(false);
     }
