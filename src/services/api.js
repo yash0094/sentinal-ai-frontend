@@ -1,4 +1,5 @@
-const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:8000";
+const API_BASE = "https://sentinel-backend-reyg.onrender.com";
+console.log("API_BASE =", API_BASE);
 
 function getToken() {
   return localStorage.getItem("sentinelai_token");
